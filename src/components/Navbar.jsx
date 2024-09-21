@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IoIosHome } from "react-icons/io";
-import { FaPhoneAlt, FaEdit } from "react-icons/fa";
+import { FaPhoneAlt, FaEdit, FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     useEffect(() => {
         // TODO if window scrolled down more that 200 that set setScrolled(true)
         const handleScroll = () => {
@@ -22,27 +23,31 @@ const Navbar = () => {
         <>
             <nav>
                 <div className='w-full h-full bg-[#028102] py-2'>
-                    <div className='lg:container flex flex-col sm:flex-row justify-between items-center mx-auto px-2 text-white'>
+                    <div className='lg:container flex  justify-between items-center mx-auto px-2 text-white'>
                         <div className='text-[13px] font-[400] flex gap-4 sm:gap-6 justify-center sm:justify-start mb-2 sm:mb-0'>
                             <Link to='/contact-us'>Contact Us</Link>
                             <Link to='/download'>Download</Link>
                         </div>
-                        <div className='text-[13px] font-[400] flex flex-col sm:flex-row gap-2 sm:gap-6 items-center'>
-                            <span className='flex gap-1 items-center'>
+                        <div className='text-[13px] font-[400] flex  gap-2 items-center'>
+                            <Link to='https://maps.app.goo.gl/1Zq3ovBDhzkdwxZy5' target="_blank" rel="noopener noreferrer" className='flex items-center gap-2'>
                                 <IoIosHome />
-                                <a href="https://maps.app.goo.gl/1Zq3ovBDhzkdwxZy5" target="_blank" rel="noopener noreferrer" className='text-center sm:text-left'>Kandaghari, Kageshwori Manohara 9, Kathmandu, Nepal</a>
-                            </span>
-                            <span className='flex gap-1 items-center'>
+                                <span className='hidden lg:block'>
+                                    Kandaghari, Kageshwori Manohara 9, Kathmandu, Nepal
+                                </span>
+                            </Link>
+                            <Link to='callto:9877654585' className='flex items-center gap-2'>
                                 <FaPhoneAlt />
-                                <Link to='callto:9877654585'>+977-01-4993031/32/33</Link>
-                            </span>
+                                <span className='hidden lg:block'>
+                                    +977-01-4993031/32/33
+                                </span>
+                            </Link>
                             <button className='px-1 rounded border border-white flex items-center gap-1 text-[12px]'><FaEdit />{" "}Enquiry Form</button>
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='hidden md:block'>
                     {!scrolled ? (
-                        <div className={`bg-white py-2 transition-all duration-900 ${scrolled ? 'opacity-0':'opacity-1'}`}>
+                        <div className={`bg-white py-2 transition-all duration-900 ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
                             <div className='lg:container flex  justify-between mx-auto px-2 '>
                                 <div>logo</div>
                                 <div>
@@ -75,6 +80,110 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
+
+                {!scrolled ? (
+                    <div className='block sm:hidden'>
+                        <div className={`flex justify-between items-center px-4 py-2 bg-white shadow-md ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
+                            <div className='w-24'>
+                                <img src="/logo.png" alt="Logo" className="h-12" />
+                            </div>
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className='text-2xl text-[#1E8642] focus:outline-none'
+                            >
+                                {isMenuOpen ? <FaTimes /> : <FaBars />}
+                            </button>
+                        </div>
+                        <div
+                            className={`fixed top-0 left-0 w-full h-full bg-white transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                                } z-50`}
+                        >
+                            <div className='flex justify-between items-center p-4 bg-[#1E8642] text-white'>
+                                <div className='w-24'>
+                                    <img src="/logo.png" alt="Logo" className="h-12" />
+                                </div>
+                                <button
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className='text-2xl focus:outline-none'
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                            <ul className='flex flex-col items-start gap-4 text-lg font-semibold p-6'>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='/' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Home</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='/about-us' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>About Us</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Academics</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Admission</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>News & Activities</Link>
+                                </li>
+                                <li className='w-full'>
+                                    <Link to='/gallery' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Galleries</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='block sm:hidden'>
+                        <div className={`flex justify-between items-center px-4 py-2 text-white bg-[#028102cc] fixed top-0 left-0 right-0 backdrop-filter backdrop-blur-md transition-all ease-in-out duration-300 z-40 ${
+                            scrolled ? 'translate-y-0 opacity-100 shadow-md' : 'translate-y-[-100%] opacity-0'
+                        }`}>
+                            <div className='w-24'> 
+                                <img src="/logo.png" alt="Logo" className="h-12" />
+                            </div>
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className='text-2xl text-white focus:outline-none z-50'
+                            >
+                                {isMenuOpen ? <FaTimes /> : <FaBars />}
+                            </button>
+                        </div>
+                        <div
+                            className={`fixed top-0 left-0 w-full h-full bg-white transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                                } z-50`}
+                        >
+                            <div className='flex justify-between items-center p-4 bg-[#1E8642] text-white'>
+                                <div className='w-24'>
+                                    <img src="/logo.png" alt="Logo" className="h-12" />
+                                </div>
+                                <button
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className='text-2xl focus:outline-none'
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                            <ul className='flex flex-col items-start gap-4 text-lg font-semibold p-6'>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='/' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Home</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='/about-us' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>About Us</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Academics</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Admission</Link>
+                                </li>
+                                <li className='w-full border-b border-gray-200 pb-2'>
+                                    <Link to='#' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>News & Activities</Link>
+                                </li>
+                                <li className='w-full'>
+                                    <Link to='/gallery' onClick={() => setIsMenuOpen(false)} className='block hover:text-[#1E8642] transition-colors'>Galleries</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </nav>
         </>
     )
