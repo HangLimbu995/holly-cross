@@ -6,8 +6,8 @@ import { IoIosHome } from 'react-icons/io'
 const Footer = () => {
     return (
         <footer className="pt-4">
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="container mx-auto px-4 py-8 flex justify-evenly">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ml-5">
                     <div>
                         <img src="/logo.png" alt="Logo" className="h-12 mb-4" />
                         <p className="text-sm">Empowering minds, shaping futures. Your trusted partner in education excellence.</p>
@@ -50,7 +50,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#1E8642] py-4">
+            <div className="bg-[#1E8642] py-4 px-8">
                 <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-white">
                     <p>&copy; 2023 School Name. All rights reserved.</p>
                     <p>Made with 💖 in Nepal by <a href="https://nepstark.com" target="_blank" rel="noopener noreferrer" className="no-underline hover:text-blue-900 transition-colors text-blue-800 text-[18px] font-bold">NepStark</a></p>

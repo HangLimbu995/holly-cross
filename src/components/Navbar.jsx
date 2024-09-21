@@ -7,7 +7,6 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     useEffect(() => {
-        // TODO if window scrolled down more that 200 that set setScrolled(true)
         const handleScroll = () => {
             const scrollThreshold = 100
             const isScrolled = window.scrollY > scrollThreshold
@@ -15,20 +14,20 @@ const Navbar = () => {
         }
 
         window.addEventListener('scroll', handleScroll)
-        handleScroll() // Check initial scroll position
+        handleScroll()
 
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
     return (
         <>
-            <nav>
-                <div className='w-full h-full bg-[#028102] py-2'>
-                    <div className='lg:container flex  justify-between items-center mx-auto px-2 text-white'>
-                        <div className='text-[13px] font-[400] flex gap-4 sm:gap-6 justify-center sm:justify-start mb-2 sm:mb-0'>
+            <nav className="w-full ">
+                <div className='lg:container w-full h-full bg-[#028102] py-2 px-4 sm:px-6 lg:px-8'>
+                    <div className='container mx-auto flex justify-between items-center text-white'>
+                        <div className='text-[13px] font-[400] flex gap-4 justify-center '>
                             <Link to='/contact-us'>Contact Us</Link>
                             <Link to='/download'>Download</Link>
                         </div>
-                        <div className='text-[13px] font-[400] flex  gap-2 items-center'>
+                        <div className='text-[13px] font-[400] flex flex-wrap justify-center gap-2 items-center'>
                             <Link to='https://maps.app.goo.gl/1Zq3ovBDhzkdwxZy5' target="_blank" rel="noopener noreferrer" className='flex items-center gap-2'>
                                 <IoIosHome />
                                 <span className='hidden lg:block'>
@@ -41,17 +40,17 @@ const Navbar = () => {
                                     +977-01-4993031/32/33
                                 </span>
                             </Link>
-                            <button className='px-1 rounded border border-white flex items-center gap-1 text-[12px]'><FaEdit />{" "}Enquiry Form</button>
+                            <button className='px-2 py-1 sm:mt-0 rounded border border-white flex items-center gap-1 text-[12px]'><FaEdit />{" "}Enquiry Form</button>
                         </div>
                     </div>
                 </div>
                 <div className='hidden md:block'>
                     {!scrolled ? (
-                        <div className={`bg-white py-2 transition-all duration-900 ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
-                            <div className='lg:container flex  justify-between mx-auto px-2 '>
+                        <div className={`bg-white py-4 px-4 sm:px-6 lg:px-8 transition-all duration-900 ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
+                            <div className='container mx-auto flex justify-between items-center'>
                                 <div>logo</div>
                                 <div>
-                                    <ul className='flex gap-6 text-[14px] font-[600] '>
+                                    <ul className='flex flex-wrap gap-4 sm:gap-6 text-[14px] font-[600]'>
                                         <li><Link to='/'>Home</Link></li>
                                         <li><Link to='/about-us'>About Us</Link></li>
                                         <li><Link to='#'>Academics</Link></li>
@@ -63,11 +62,11 @@ const Navbar = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className={`bg-[#028102a2] fixed top-0 w-full backdrop-filter backdrop-blur-[20px] py-2 transition-all ease-in-out duration-300 z-40 ${scrolled ? 'translate-y-0 opacity-1' : 'translate-y-[-100%] opacity-0'}`}>
-                            <div className='lg:container flex  justify-between mx-auto px-2 '>
+                        <div className={`bg-[#028102a2] fixed top-0 w-full backdrop-filter backdrop-blur-[20px] py-4 px-4 sm:px-6 lg:px-8 transition-all ease-in-out duration-300 z-40 ${scrolled ? 'translate-y-0 opacity-1' : 'translate-y-[-100%] opacity-0'}`}>
+                            <div className='container mx-auto flex justify-between items-center'>
                                 <div>logo</div>
                                 <div>
-                                    <ul className='flex gap-6 text-[14px] font-[600] '>
+                                    <ul className='flex flex-wrap gap-4 sm:gap-6 text-[14px] font-[600]'>
                                         <li><Link to='/'>Home</Link></li>
                                         <li><Link to='/about-us'>About Us</Link></li>
                                         <li><Link to='#'>Academics</Link></li>
@@ -83,7 +82,7 @@ const Navbar = () => {
 
                 {!scrolled ? (
                     <div className='block sm:hidden'>
-                        <div className={`flex justify-between items-center px-4 py-2 bg-white shadow-md ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
+                        <div className={`flex justify-between items-center px-4 py-4 bg-white shadow-md ${scrolled ? 'opacity-0' : 'opacity-1'}`}>
                             <div className='w-24'>
                                 <img src="/logo.png" alt="Logo" className="h-12" />
                             </div>
@@ -133,10 +132,9 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className='block sm:hidden'>
-                        <div className={`flex justify-between items-center px-4 py-2 text-white bg-[#028102cc] fixed top-0 left-0 right-0 backdrop-filter backdrop-blur-md transition-all ease-in-out duration-300 z-40 ${
-                            scrolled ? 'translate-y-0 opacity-100 shadow-md' : 'translate-y-[-100%] opacity-0'
-                        }`}>
-                            <div className='w-24'> 
+                        <div className={`flex justify-between items-center px-4 py-4 text-white bg-[#028102cc] fixed top-0 left-0 right-0 backdrop-filter backdrop-blur-md transition-all ease-in-out duration-300 z-40 ${scrolled ? 'translate-y-0 opacity-100 shadow-md' : 'translate-y-[-100%] opacity-0'
+                            }`}>
+                            <div className='w-24'>
                                 <img src="/logo.png" alt="Logo" className="h-12" />
                             </div>
                             <button
